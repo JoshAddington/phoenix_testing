@@ -56,6 +56,12 @@ config :logger, level: :info
 #     config :rocks, Rocks.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+# Configure secret key
+config :rocks, Rocks.Endpoint,
+  secret_key_base: System.get_env("SECRET_BASE_KEY")
+
+# Configure your database
+config :rocks, Rocks.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: 20
