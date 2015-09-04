@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :rocks, Rocks.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "rocks_dev",
-  hostname: "localhost",
+  username: System.get_env("RDS_USERNAME"),
+  password: System.get_env("RDS_PASSWORD") ,
+  database: System.get_env("RDS_DB_NAME"),
+  hostname: System.get_env("RDS_ENDPOINT"),
   pool_size: 10
