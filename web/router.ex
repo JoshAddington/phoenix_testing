@@ -13,6 +13,12 @@ defmodule Rocks.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", Rocks do
+    pipe_through :api
+
+    resources "/contacts", ContactController
+  end
+
   scope "/", Rocks do
     pipe_through :browser # Use the default browser stack
 
